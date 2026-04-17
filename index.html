@@ -7,334 +7,69 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Courier Prime', monospace; background: #f5f2eb; color: #1a1a14; min-height: 100vh; }
 
-body {
-  font-family: 'Courier Prime', 'Courier New', monospace;
-  background: #f5f2eb;
-  color: #1a1a14;
-  min-height: 100vh;
-}
-
-/* ── HERO ── */
-.hero {
-  position: relative;
-  width: 100%;
-  min-height: 340px;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-}
-.hero-bg {
-  position: absolute; inset: 0;
-  background-image: url('https://raw.githubusercontent.com/franch7777/vscode/main/lib/back.png');
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.6) saturate(0.75);
-  transform: scale(1.04);
-  transition: transform 8s ease;
-}
+.hero { position: relative; width: 100%; min-height: 320px; display: flex; align-items: flex-end; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/franch7777/vscode/main/lib/back.png'); background-size: cover; background-position: center; filter: brightness(0.6) saturate(0.75); transform: scale(1.04); transition: transform 8s ease; }
 .hero:hover .hero-bg { transform: scale(1.0); }
-.hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(245,242,235,0.0) 0%, rgba(245,242,235,0.92) 100%);
-}
-.hero-content {
-  position: relative; z-index: 2;
-  padding: 2rem 2.5rem 2.2rem;
-  max-width: 900px;
-  animation: fadeUp 0.9s ease both;
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero-tag {
-  display: inline-block;
-  font-family: 'Courier Prime', monospace;
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0f6e56;
-  border: 0.5px solid #1D9E75;
-  border-radius: 2px;
-  padding: 3px 9px;
-  margin-bottom: 0.9rem;
-}
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -1px;
-  color: #1a1a14;
-  margin-bottom: 0.7rem;
-}
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(245,242,235,0.0) 0%, rgba(245,242,235,0.93) 100%); }
+.hero-content { position: relative; z-index: 2; padding: 2rem 2.5rem 2rem; max-width: 900px; animation: fadeUp 0.9s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.hero-tag { display: inline-block; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #0f6e56; border: 0.5px solid #1D9E75; border-radius: 2px; padding: 3px 9px; margin-bottom: 0.9rem; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5.5vw, 3.8rem); font-weight: 400; line-height: 1.05; letter-spacing: -1px; color: #1a1a14; margin-bottom: 0.6rem; }
 .hero-title em { font-style: italic; color: #0f6e56; }
-.hero-desc {
-  font-size: 12px;
-  color: rgba(26,26,20,0.6);
-  max-width: 440px;
-  line-height: 1.75;
-  margin-bottom: 1.3rem;
-}
-.hero-stat { display: flex; gap: 1.8rem; }
-.stat { display: flex; flex-direction: column; gap: 2px; }
-.stat-n {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  color: #1a1a14;
-  line-height: 1;
-}
-.stat-l {
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(26,26,20,0.38);
-}
+.hero-desc { font-size: 12px; color: rgba(26,26,20,0.58); max-width: 440px; line-height: 1.75; }
 
-/* ── FILTER BAR ── */
-.filter-bar {
-  background: #ede9e0;
-  border-bottom: 1px solid #d4cfc4;
-  border-top: 1px solid #d4cfc4;
-  padding: 0 2.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.filter-label {
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(26,26,20,0.35);
-  padding: 0 1.1rem 0 0;
-  border-right: 1px solid #d4cfc4;
-  white-space: nowrap;
-  height: 44px;
-  display: flex;
-  align-items: center;
-}
-.filter-tabs {
-  display: flex;
-  gap: 0;
-  flex: 1;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
+.filter-bar { background: #ede9e0; border-bottom: 1px solid #d4cfc4; border-top: 1px solid #d4cfc4; padding: 0 2.5rem; display: flex; align-items: center; gap: 0; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
+.filter-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(26,26,20,0.35); padding: 0 1.1rem 0 0; border-right: 1px solid #d4cfc4; white-space: nowrap; height: 44px; display: flex; align-items: center; flex-shrink: 0; }
+.filter-tabs { display: flex; gap: 0; flex: 1; overflow-x: auto; scrollbar-width: none; min-width: 0; }
 .filter-tabs::-webkit-scrollbar { display: none; }
-.ftab {
-  font-family: 'Courier Prime', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(26,26,20,0.45);
-  padding: 0 1.1rem;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  white-space: nowrap;
-  transition: color 0.15s, border-color 0.15s;
-  background: none;
-  border-top: none; border-left: none; border-right: none;
-}
-.ftab:hover { color: rgba(26,26,20,0.8); }
+.ftab { font-family: 'Courier Prime', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(26,26,20,0.42); padding: 0 0.85rem; height: 44px; display: flex; align-items: center; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.15s, border-color 0.15s; background: none; border-top: none; border-left: none; border-right: none; }
+.ftab:hover { color: rgba(26,26,20,0.78); }
 .ftab.active { color: #0f6e56; border-bottom-color: #1D9E75; }
-
 .bar-divider { width: 1px; background: #d4cfc4; height: 44px; flex-shrink: 0; }
-
-.group-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 0 0 1.1rem;
-  height: 44px;
-  cursor: pointer;
-}
-.toggle-label {
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(26,26,20,0.4);
-  white-space: nowrap;
-}
-.toggle-pill {
-  width: 30px; height: 16px;
-  border-radius: 8px;
-  background: #c8c3b8;
-  position: relative;
-  transition: background 0.2s;
-  flex-shrink: 0;
-}
+.group-toggle { display: flex; align-items: center; gap: 8px; padding: 0 1rem; height: 44px; cursor: pointer; flex-shrink: 0; }
+.toggle-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(26,26,20,0.4); white-space: nowrap; }
+.toggle-pill { width: 30px; height: 16px; border-radius: 8px; background: #c8c3b8; position: relative; transition: background 0.2s; flex-shrink: 0; }
 .toggle-pill.on { background: #1D9E75; }
-.toggle-dot {
-  width: 12px; height: 12px;
-  border-radius: 50%;
-  background: #fff;
-  position: absolute;
-  top: 2px; left: 2px;
-  transition: left 0.2s;
-}
+.toggle-dot { width: 12px; height: 12px; border-radius: 50%; background: #fff; position: absolute; top: 2px; left: 2px; transition: left 0.2s; }
 .toggle-pill.on .toggle-dot { left: 16px; }
-
-.search-wrap {
-  border-left: 1px solid #d4cfc4;
-  padding: 0 0 0 1rem;
-  display: flex;
-  align-items: center;
-  height: 44px;
-  margin-left: auto;
-}
-.search-input {
-  background: transparent;
-  border: none; outline: none;
-  font-family: 'Courier Prime', monospace;
-  font-size: 11px;
-  color: #1a1a14;
-  letter-spacing: 0.04em;
-  width: 150px;
-}
+.search-wrap { border-left: 1px solid #d4cfc4; padding: 0 0 0 1rem; display: flex; align-items: center; height: 44px; }
+.search-input { background: transparent; border: none; outline: none; font-family: 'Courier Prime', monospace; font-size: 11px; color: #1a1a14; letter-spacing: 0.04em; width: 140px; }
 .search-input::placeholder { color: rgba(26,26,20,0.28); font-style: italic; }
 
-/* ── BODY ── */
 .body-wrap { padding: 0 0 5rem; background: #f5f2eb; }
+.flat-section { padding: 1.4rem 2.5rem 0; }
+.section-meta { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; }
+.section-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,26,20,0.35); }
+.section-count { font-size: 9px; color: rgba(26,26,20,0.25); letter-spacing: 0.1em; }
+.flat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0; border-left: 1px solid #d4cfc4; border-top: 1px solid #d4cfc4; }
 
-/* ── UNGROUPED flat grid ── */
-.flat-section { padding: 1.5rem 2.5rem 0; }
-.section-meta {
-  display: flex; align-items: center; gap: 0.7rem;
-  margin-bottom: 1rem;
-}
-.section-label {
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(26,26,20,0.35);
-}
-.section-count {
-  font-size: 9px;
-  color: rgba(26,26,20,0.25);
-  letter-spacing: 0.1em;
-}
-.flat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
-  gap: 0;
-  border-left: 1px solid #d4cfc4;
-  border-top: 1px solid #d4cfc4;
-}
-
-/* ── SHELF SECTION ── */
 .shelf-section { margin-bottom: 0; }
-.shelf-label-row {
-  display: flex; align-items: center;
-  padding: 1.6rem 2.5rem 0.9rem;
-  gap: 0.75rem;
-  border-top: 1px solid #d4cfc4;
-}
-.shelf-label-row:first-child { border-top: none; }
-.shelf-num {
-  font-size: 9px; color: #1D9E75;
-  letter-spacing: 0.2em; text-transform: uppercase;
-}
-.shelf-name {
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(26,26,20,0.55); flex: 1;
-}
+.shelf-label-row { display: flex; align-items: center; padding: 1.5rem 2.5rem 0.85rem; gap: 0.75rem; border-top: 1px solid #d4cfc4; }
+.shelf-num { font-size: 9px; color: #1D9E75; letter-spacing: 0.2em; text-transform: uppercase; }
+.shelf-name { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(26,26,20,0.52); flex: 1; }
 .shelf-count { font-size: 9px; color: rgba(26,26,20,0.28); letter-spacing: 0.1em; }
-.shelf-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
-  gap: 0;
-  margin: 0 2.5rem;
-  border-left: 1px solid #d4cfc4;
-  border-top: 1px solid #d4cfc4;
-}
-.shelf-wood {
-  height: 10px;
-  background: #ddd8cc;
-  border-top: 1.5px solid #c8c3b5;
-  border-bottom: 1px solid #b8b4a8;
-  margin: 0 2.5rem 0;
-}
+.shelf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0; margin: 0 2.5rem; border-left: 1px solid #d4cfc4; border-top: 1px solid #d4cfc4; }
+.shelf-wood { height: 10px; background: #ddd8cc; border-top: 1.5px solid #c8c3b5; border-bottom: 1px solid #b8b4a8; margin: 0 2.5rem; }
 
-/* ── CARD ── */
-.card {
-  display: block;
-  text-decoration: none;
-  background: #faf8f4;
-  border-right: 1px solid #d4cfc4;
-  border-bottom: 1px solid #d4cfc4;
-  overflow: hidden;
-  transition: background 0.15s;
-  animation: fadeUp 0.45s ease both;
-}
+.card { display: block; text-decoration: none; background: #faf8f4; border-right: 1px solid #d4cfc4; border-bottom: 1px solid #d4cfc4; overflow: hidden; transition: background 0.15s; animation: fadeUp 0.45s ease both; }
 .card:hover { background: #fff; }
-
-.card-thumb {
-  width: 100%; aspect-ratio: 16 / 9;
-  background: #e8e4db;
-  overflow: hidden; position: relative;
-}
-.card-thumb img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  opacity: 0; transition: opacity 0.3s;
-  filter: saturate(0.75) brightness(0.95);
-}
+.card-thumb { width: 100%; aspect-ratio: 16 / 9; background: #e8e4db; overflow: hidden; position: relative; }
+.card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 0.3s; filter: saturate(0.75) brightness(0.95); }
 .card:hover .card-thumb img { filter: saturate(0.95) brightness(1); }
-.fallback {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  background: #e8e4db;
-}
-
-.card-spine { width: 100%; height: 3px; }
-
+.fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: #e8e4db; }
+.card-spine { width: 100%; height: 3px; background: #ddd8cc; }
 .card-body { padding: 0.65rem 0.85rem 0.75rem; }
-.card-call {
-  font-size: 9px; color: #1D9E75;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  margin-bottom: 4px; font-weight: 700;
-}
-.card-name {
-  font-size: 12px; font-weight: 400;
-  color: rgba(26,26,20,0.7); line-height: 1.5;
-}
+.card-call { font-size: 9px; color: #1D9E75; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; font-weight: 700; }
+.card-name { font-size: 12px; font-weight: 400; color: rgba(26,26,20,0.7); line-height: 1.5; }
 .card:hover .card-name { color: #1a1a14; }
-.card-footer {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-top: 7px; padding-top: 6px;
-  border-top: 0.5px solid #e0dbd2;
-}
-.card-topic {
-  font-size: 9px; letter-spacing: 0.08em;
-  color: rgba(26,26,20,0.3); text-transform: uppercase;
-}
-.arrow-icon {
-  width: 13px; height: 13px;
-  color: #c8c3b8;
-  transition: color 0.15s, transform 0.15s; flex-shrink: 0;
-}
+.card-footer { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 7px; padding-top: 6px; border-top: 0.5px solid #e0dbd2; gap: 6px; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 3px; flex: 1; }
+.tag-pill { font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(26,26,20,0.45); background: #edeae2; border-radius: 2px; padding: 2px 5px; white-space: nowrap; }
+.arrow-icon { width: 13px; height: 13px; color: #c8c3b8; transition: color 0.15s, transform 0.15s; flex-shrink: 0; margin-top: 2px; }
 .card:hover .arrow-icon { color: #1D9E75; transform: translate(2px,-2px); }
-
-.empty {
-  font-size: 12px; color: rgba(26,26,20,0.32);
-  font-style: italic; text-align: center;
-  padding: 3rem 2.5rem; letter-spacing: 0.05em;
-}
-
-/* spine colors per group (light mode) */
-.spine-crowdsourced { background: #b8d4f0; }
-.spine-participatory { background: #b8e8d4; }
-.spine-government    { background: #f0d4b8; }
-.spine-community     { background: #d4b8f0; }
-.spine-none          { background: #ddd8cc; }
+.empty { font-size: 12px; color: rgba(26,26,20,0.32); font-style: italic; text-align: center; padding: 3rem 2.5rem; letter-spacing: 0.05em; }
 </style>
 </head>
 <body>
@@ -346,23 +81,12 @@ body {
     <span class="hero-tag">Thesis Research · Oakland, CA</span>
     <h1 class="hero-title">Oakland<br><em>Map Library</em></h1>
     <p class="hero-desc">A curated collection of interactive maps, story maps, and spatial analyses exploring equity, environment, and community.</p>
-    <div class="hero-stat">
-      <div class="stat"><span class="stat-n">16</span><span class="stat-l">Maps</span></div>
-      <div class="stat"><span class="stat-n">7+</span><span class="stat-l">Topics</span></div>
-      <div class="stat"><span class="stat-n">OAK</span><span class="stat-l">Focus Area</span></div>
-    </div>
   </div>
 </header>
 
 <nav class="filter-bar">
-  <span class="filter-label">Filter</span>
-  <div class="filter-tabs" id="filter-tabs">
-    <button class="ftab active" data-filter="all">All</button>
-    <button class="ftab" data-filter="crowdsourced">Crowdsourced</button>
-    <button class="ftab" data-filter="participatory">Participatory</button>
-    <button class="ftab" data-filter="government">Government</button>
-    <button class="ftab" data-filter="community">Community Orgs</button>
-  </div>
+  <span class="filter-label">Reshelve</span>
+  <div class="filter-tabs" id="filter-tabs"></div>
   <div class="bar-divider"></div>
   <div class="group-toggle" id="group-toggle">
     <span class="toggle-label">Group</span>
@@ -377,53 +101,88 @@ body {
 
 <script>
 const maps = [
-  {n:1,  title:"Gentrification & Food Apartheid",                   url:"https://coagis.maps.arcgis.com/apps/MapSeries/index.html?appid=c7ff2c218cef4d789c6414ddaf2c60d1",   group:"government"},
-  {n:2,  title:"Green Infrastructure: Y-Plan Oakland",              url:"https://storymaps.arcgis.com/stories/b383221f37274ebaa4909f2ee5c84e43",                           group:"participatory"},
-  {n:3,  title:"Oakland Logistics Center Map",                      url:"https://atlas.colliers.com/portal/apps/mapviewer/index.html?webmap=edb7c0afb49745be841eba76d2e4a142", group:"government"},
-  {n:4,  title:"Slow Violence against Black West Oakland Residents", url:"https://storymaps.arcgis.com/stories/c3a5b0ef53b645039660041f535a7a66",                           group:"community"},
-  {n:5,  title:"Analyzing Environmental Vulnerabilities in Oakland", url:"https://storymaps.arcgis.com/stories/e084837b1cb0446b99972776593262c7",                           group:"government"},
-  {n:6,  title:"Oakland BayWheels Expansion",                       url:"https://storymaps.arcgis.com/stories/e265142ca71e43a9b5e4e1be71c9df08",                           group:"participatory"},
-  {n:7,  title:"Invisible Boundaries: Oakland, California",         url:"https://storymaps.arcgis.com/stories/ca8edd72eb6646b79399dbd14d0e2dbd",                           group:"community"},
-  {n:8,  title:"Climate Equity Progress in Oakland",                url:"https://storymaps.arcgis.com/collections/24303e1c749649deae2d4badf22a87b4",                       group:"government"},
-  {n:9,  title:"The Lines That Shape Our Cities",                   url:"https://storymaps.arcgis.com/stories/0f58d49c566b486482b3e64e9e5f7ac9",                           group:"community"},
-  {n:10, title:"Lived History of EJ Oakland, CA",                   url:"https://storymaps.arcgis.com/stories/0f40bd51be894a86b3f8b77dcbee07db",                           group:"community"},
-  {n:11, title:"Oakland, California",                               url:"https://storymaps.arcgis.com/stories/73ab1bb212cf40df8a22a7451427f0b9",                           group:"participatory"},
-  {n:12, title:"Oakland Storymap",                                  url:"https://storymaps.arcgis.com/stories/c080aabbae3044f7800cb63bb15d8a2e",                           group:"community"},
-  {n:13, title:"Oakland, CA StoryMap",                              url:"https://storymaps.arcgis.com/stories/3e130fc9ae0841cba5919cfd45e5aaa0",                           group:"participatory"},
-  {n:14, title:"Oakland Community Power Map",                       url:"https://www.arcgis.com/apps/StoryMapCrowdsource/index.html?appid=0afabf23879a42f291deba308afc1831", group:"crowdsourced"},
-  {n:15, title:"Hoodmaps",                                          url:"https://hoodmaps.com/oakland-neighborhood-map",                                                    group:"crowdsourced"},
-  {n:16, title:"Falling Fruit",                                     url:"https://fallingfruit.org/",                                                                        group:"crowdsourced"},
+  {n:1,  title:"Gentrification & Food Apartheid",                                                   url:"https://coagis.maps.arcgis.com/apps/MapSeries/index.html?appid=c7ff2c218cef4d789c6414ddaf2c60d1",   tags:["Community Organization","StoryMap","Retired"]},
+  {n:2,  title:"Green Infrastructure: Y-Plan Oakland",                                              url:"https://storymaps.arcgis.com/stories/b383221f37274ebaa4909f2ee5c84e43",                           tags:["Education","Student","Institutional Ties","StoryMap"]},
+  {n:3,  title:"Oakland Logistics Center Map",                                                      url:"https://atlas.colliers.com/portal/apps/mapviewer/index.html?webmap=edb7c0afb49745be841eba76d2e4a142", tags:["Individual","StoryMap"]},
+  {n:4,  title:"Slow Violence against Black West Oakland Residents",                                url:"https://storymaps.arcgis.com/stories/c3a5b0ef53b645039660041f535a7a66",                           tags:["Student","Education","StoryMap","Informational"]},
+  {n:5,  title:"Analyzing Environmental Vulnerabilities in Oakland",                                url:"https://storymaps.arcgis.com/stories/e084837b1cb0446b99972776593262c7",                           tags:["Student","Education","StoryMap","Informational"]},
+  {n:6,  title:"Oakland BayWheels Expansion",                                                       url:"https://storymaps.arcgis.com/stories/e265142ca71e43a9b5e4e1be71c9df08",                           tags:["Government","Participatory Planning","Crowdsourced","StoryMap"]},
+  {n:7,  title:"Invisible Boundaries: Oakland, California",                                         url:"https://storymaps.arcgis.com/stories/ca8edd72eb6646b79399dbd14d0e2dbd",                           tags:["Student","Education","StoryMap","Informational"]},
+  {n:8,  title:"Climate Equity Progress in Oakland",                                                url:"https://storymaps.arcgis.com/collections/24303e1c749649deae2d4badf22a87b4",                       tags:["Government","StoryMap","Informational"]},
+  {n:9,  title:"The Lines That Shape Our Cities",                                                   url:"https://storymaps.arcgis.com/stories/0f58d49c566b486482b3e64e9e5f7ac9",                           tags:["Education","StoryMap","Informational","Ties to Esri"]},
+  {n:10, title:"Lived History of EJ Oakland, CA",                                                   url:"https://storymaps.arcgis.com/stories/0f40bd51be894a86b3f8b77dcbee07db",                           tags:["Student","Education","StoryMap","Informational"]},
+  {n:11, title:"Oakland, California",                                                               url:"https://storymaps.arcgis.com/stories/73ab1bb212cf40df8a22a7451427f0b9",                           tags:["Individual","StoryMap"]},
+  {n:12, title:"Oakland Storymap",                                                                  url:"https://storymaps.arcgis.com/stories/c080aabbae3044f7800cb63bb15d8a2e",                           tags:["Government","StoryMap","Informational"]},
+  {n:13, title:"Oakland, CA StoryMap",                                                              url:"https://storymaps.arcgis.com/stories/3e130fc9ae0841cba5919cfd45e5aaa0",                           tags:["Student","Education","StoryMap","Informational"]},
+  {n:14, title:"Oakland Community Power Map",                                                       url:"https://www.arcgis.com/apps/StoryMapCrowdsource/index.html?appid=0afabf23879a42f291deba308afc1831", tags:["Community Organization","Activism","Crowdsourced","Retired"]},
+  {n:15, title:"Hoodmaps",                                                                          url:"https://hoodmaps.com/oakland-neighborhood-map",                                                    tags:["Crowdsourced"]},
+  {n:16, title:"Falling Fruit",                                                                     url:"https://fallingfruit.org/",                                                                        tags:["Crowdsourced"]},
+  {n:17, title:"Atlas of Oakland: What's Your Oakland Story?",                                      url:"https://museumca.org/blog/whats-your-oakland-story/",                                              tags:["You Are Here","Crowdsourced","Participatory"]},
+  {n:18, title:"Decolonized Bay Area Rapid Transit",                                                url:"https://museumca.org/on-view/you-are-here-california-stories-on-the-map/",                        tags:["You Are Here","Art","Individual"]},
+  {n:19, title:"Bay Area 2050: the BART Metro Map",                                                 url:"https://museumca.org/on-view/you-are-here-california-stories-on-the-map/",                        tags:["You Are Here","Individual"]},
+  {n:20, title:"Takachizu",                                                                         url:"http://www.takachizu.org/",                                                                         tags:["You Are Here","Art","Community Organization"]},
+  {n:21, title:"Let's Map Oakland Together",                                                        url:"https://museumca.org/on-view/you-are-here-california-stories-on-the-map/",                        tags:["You Are Here","Crowdsourced"]},
+  {n:22, title:"Automobile Junkyard, Oakland, CA",                                                  url:"https://museumca.org/on-view/you-are-here-california-stories-on-the-map/",                        tags:["You Are Here","Art","Individual"]},
+  {n:23, title:"Path of Love",                                                                      url:"https://museumca.org/on-view/you-are-here-california-stories-on-the-map/",                        tags:["You Are Here","Art","Individual"]},
+  {n:24, title:"Before You Are Here",                                                               url:"https://www.instagram.com/p/DCBA89wNTUb/?hl=en",                                                  tags:["You Are Here","Art","Community Organization","Institutional Ties"]},
+  {n:25, title:"Defunct Businesses and Brands of Oakland",                                          url:"https://museumca.org/on-view/you-are-here-california-stories-on-the-map/",                        tags:["You Are Here","Art","Crowdsourced"]},
+  {n:26, title:"The Town That Raised Me",                                                           url:"https://museumca.org/on-view/you-are-here-california-stories-on-the-map/",                        tags:["You Are Here","Art","Crowdsourced"]},
+  {n:27, title:"Our Bay of Books",                                                                  url:"https://museumca.org/on-view/you-are-here-california-stories-on-the-map/",                        tags:["You Are Here","Art","Crowdsourced"]},
+  {n:28, title:"My Life in Movements",                                                              url:"https://www.instagram.com/p/CASxK9ZBYC_/?hl=en",                                                  tags:["You Are Here","Art","Crowdsourced"]},
+  {n:29, title:"Oakland Cultural History Map",                                                      url:"https://www.instagram.com/p/B-qdoNXgFT8/?hl=en&img_index=4",                                      tags:["You Are Here","Art","Crowdsourced"]},
+  {n:30, title:"A Map of East Bay Food Collectives and Co-ops",                                     url:"https://edibleeastbay.com/2017/05/15/a-map-of-east-bay-food-collectives-and-co-ops/",              tags:["You Are Here","Art","Individual"]},
+  {n:31, title:"Favorite Fish Tacos of the East Bay",                                               url:"https://edibleeastbay.com/2019/02/20/favorite-fish-tacos-of-the-east-bay/",                       tags:["You Are Here","Art","Individual"]},
+  {n:32, title:"Places to Kiss Girls and Hear Night Herons in Oakland",                             url:"https://www.instagram.com/p/DKyIg8oMUZh/?hl=en",                                                  tags:["You Are Here","Art","Crowdsourced"]},
+  {n:33, title:"Narratives of Displacement and Resistance",                                         url:"https://www.antievictionmappingproject.net/narratives.html",                                       tags:["Community Organization","Participatory","Activism"]},
+  {n:34, title:"Mapping Small Arts & Culture Organizations of Color in Oakland",                    url:"https://mapartscultureoakland.org/wp-content/uploads/Mapping_Oakland_061918.pdf",                  tags:["Community Organization","Crowdsourced","Advocacy","Institutional Ties"]},
+  {n:35, title:"Interactive Map for East Oakland AB 617 CERP Community Mapping Project",            url:"https://experience.arcgis.com/experience/981998a3ba3142bea8c2ee262af6b9a9",                        tags:["Community Organization","Crowdsourced","Advocacy"]},
+  {n:36, title:"Oakland Map Jam",                                                                   url:"https://localwiki.org/oakland/Oakland_Map_Jam",                                                    tags:["Community Organization","Crowdsourced"]},
+  {n:37, title:"West Oakland Air Quality (WOAQ) Monitoring Network",                               url:"https://woeip.org/featured-work/woaq-west-oakland-air-quality-monitoring-network/",               tags:["Community Organization","Participatory Mapping","Advocacy","Institutional Ties"]},
+  {n:38, title:"Owning Our Air: West Oakland Community Action Plan",                               url:"https://woeip.org/featured-work/owning-our-air/",                                                  tags:["Community Organization","Participatory Mapping","Advocacy","Institutional Ties"]},
+  {n:39, title:"Mapping Air Pollution with Google Street View Cars",                               url:"https://apte.caee.utexas.edu/google-air-mapping/",                                                 tags:["Community Organization","Participatory Mapping","Institutional Ties","Corporate Ties"]},
+  {n:40, title:"West Oakland Truck Survey",                                                         url:"https://www.woeip.org/wp-content/uploads/2020/11/WOEIP-research-West-Oakland-Truck-Survey-Final-Report-Dec-2009.ashx_.pdf",tags:["Community Organization","Participatory Mapping","Advocacy"]},
+  {n:41, title:"Ecocity Mapping for Urban Villages",                                                url:"https://ecocitybuilders.org/wp-content/uploads/2018/10/EcocityMappingFinal.pdf",                   tags:["Community Organization","Participatory Mapping","Advocacy"]},
+  {n:42, title:"Wood Street Commons",                                                               url:"https://journals.sagepub.com/doi/10.1177/02637758241263205",                                       tags:["Community Organization","Participatory Mapping","Advocacy","Institutional Ties"]},
+  {n:43, title:"Geographic Equity Toolbox",                                                         url:"https://www.oaklandca.gov/Community/Community-Development/Neighborhood-Improvement/Geographic-Equity-Toolbox", tags:["Government","Informational","Institutional Ties"]},
+  {n:44, title:"Map of Food Pantries and Community Gardens",                                        url:"https://www.google.com/maps/d/u/0/viewer?mid=1Z1hyOOLTvbfUg9vAucAG3vVfIwA",                       tags:["Individual"]},
+  {n:45, title:"Mapping Oakland's Vacant Parcels",                                                  url:"https://ternercenter.berkeley.edu/research-and-policy/mapping-oaklands-vacant-parcels/",           tags:["Student","Education","StoryMap","Informational","Institutional Ties"]},
+  {n:46, title:"Census 2020: Interactive California Map",                                           url:"https://oaklandside.org/2021/09/08/census-2020-interactive-california-map-shows-how-your-oakland-neighborhood-has-changed/", tags:["Individual"]},
+  {n:47, title:"Oakland Neighborhoods 2.3",                                                         url:"https://www.google.com/maps/d/u/0/viewer?mid=1WysQ1z9sgkoa9id0ZFiuke2aiEPS9EVs",                   tags:["Individual"]},
+  {n:48, title:"My Oakland Map",                                                                    url:"https://www.google.com/maps/d/u/0/viewer?mid=1y7Oai3uF6JlW-S1iFSwfwu8wZEo",                       tags:["Individual"]},
+  {n:49, title:"Youth Participatory Action Research (YPAR) 2.0",                                   url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC5564687/",                                                tags:["Education","Participatory","Informational","Institutional Ties"]},
 ];
 
-const groupLabels = {
-  crowdsourced:  "Crowdsourced",
-  participatory: "Participatory",
-  government:    "Government",
-  community:     "Community Organizations",
-};
-const groupOrder = ["crowdsourced","participatory","government","community"];
-
-const imgBase = "https://raw.githubusercontent.com/franch7777/vscode/main/lib/";
+const imgBase = "https://raw.githubusercontent.com/franch7777/vscode/main/lib_2/";
 const fallbackSVG = `<svg width="26" height="26" viewBox="0 0 36 36" fill="none"><rect x="3" y="7" width="30" height="22" rx="2" stroke="#1D9E75" stroke-width="1.5"/><path d="M3 13l8-4 8 4 8-4 8 4" stroke="#1D9E75" stroke-width="1.5" stroke-linejoin="round"/><circle cx="13" cy="20" r="2.5" stroke="#1D9E75" stroke-width="1.5"/><path d="M13 22.5v4" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/></svg>`;
 const arrowSVG = `<svg class="arrow-icon" viewBox="0 0 18 18" fill="none"><path d="M4 14L14 4M14 4H7M14 4v7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+// collect all unique tags in order of frequency
+const tagCounts = {};
+maps.forEach(m => m.tags.forEach(t => { tagCounts[t] = (tagCounts[t]||0) + 1; }));
+const allTags = Object.entries(tagCounts).sort((a,b) => b[1]-a[1]).map(e => e[0]);
+
+// build filter tabs
+const tabsEl = document.getElementById('filter-tabs');
+const allBtn = document.createElement('button');
+allBtn.className = 'ftab active'; allBtn.dataset.filter = 'all'; allBtn.textContent = 'All';
+tabsEl.appendChild(allBtn);
+allTags.forEach(tag => {
+  const btn = document.createElement('button');
+  btn.className = 'ftab'; btn.dataset.filter = tag; btn.textContent = tag;
+  tabsEl.appendChild(btn);
+});
 
 let activeFilter = 'all';
 let grouped = false;
 let searchQuery = '';
 
-function makeCard(m, i, showSpine) {
+function makeCard(m, i) {
   const a = document.createElement('a');
-  a.className = 'card';
-  a.href = m.url;
-  a.target = '_blank';
-  a.rel = 'noopener noreferrer';
-  a.style.animationDelay = `${i * 0.04}s`;
+  a.className = 'card'; a.href = m.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+  a.style.animationDelay = `${Math.min(i,12) * 0.04}s`;
 
-  const thumb = document.createElement('div');
-  thumb.className = 'card-thumb';
-  const fb = document.createElement('div');
-  fb.className = 'fallback';
-  fb.innerHTML = fallbackSVG;
+  const thumb = document.createElement('div'); thumb.className = 'card-thumb';
+  const fb = document.createElement('div'); fb.className = 'fallback'; fb.innerHTML = fallbackSVG;
   thumb.appendChild(fb);
   const img = document.createElement('img');
   img.src = imgBase + m.n + '.png';
@@ -432,65 +191,55 @@ function makeCard(m, i, showSpine) {
   img.onerror = () => { img.style.display = 'none'; };
   thumb.appendChild(img);
 
-  const spine = document.createElement('div');
-  spine.className = `card-spine spine-${m.group}`;
+  const spine = document.createElement('div'); spine.className = 'card-spine';
 
-  const cbody = document.createElement('div');
-  cbody.className = 'card-body';
-  cbody.innerHTML = `<div class="card-call">MAP ${String(m.n).padStart(3,'0')}</div><div class="card-name">${m.title}</div><div class="card-footer"><span class="card-topic">${groupLabels[m.group]}</span>${arrowSVG}</div>`;
+  const cbody = document.createElement('div'); cbody.className = 'card-body';
+  const tagPills = m.tags.map(t => `<span class="tag-pill">${t}</span>`).join('');
+  cbody.innerHTML = `<div class="card-call">MAP ${String(m.n).padStart(3,'0')}</div><div class="card-name">${m.title}</div><div class="card-footer"><div class="card-tags">${tagPills}</div>${arrowSVG}</div>`;
 
-  a.appendChild(thumb);
-  if (showSpine) a.appendChild(spine);
-  a.appendChild(cbody);
+  a.appendChild(thumb); a.appendChild(spine); a.appendChild(cbody);
   return a;
 }
 
 function build(filtered) {
   const body = document.getElementById('body');
   body.innerHTML = '';
-
-  if (!filtered.length) {
-    body.innerHTML = '<p class="empty">[ no maps found ]</p>';
-    return;
-  }
+  if (!filtered.length) { body.innerHTML = '<p class="empty">[ no maps found in this section ]</p>'; return; }
 
   if (!grouped) {
-    const sec = document.createElement('div');
-    sec.className = 'flat-section';
-    const meta = document.createElement('div');
-    meta.className = 'section-meta';
+    const sec = document.createElement('div'); sec.className = 'flat-section';
+    const meta = document.createElement('div'); meta.className = 'section-meta';
     meta.innerHTML = `<span class="section-label">All maps</span><span class="section-count">${filtered.length} item${filtered.length===1?'':'s'}</span>`;
     sec.appendChild(meta);
-    const grid = document.createElement('div');
-    grid.className = 'flat-grid';
-    filtered.forEach((m, i) => grid.appendChild(makeCard(m, i, false)));
+    const grid = document.createElement('div'); grid.className = 'flat-grid';
+    filtered.forEach((m,i) => grid.appendChild(makeCard(m,i)));
     sec.appendChild(grid);
     body.appendChild(sec);
   } else {
-    const byGroup = {};
-    groupOrder.forEach(g => byGroup[g] = []);
-    filtered.forEach(m => { if (byGroup[m.group]) byGroup[m.group].push(m); });
+    const usedTag = activeFilter === 'all' ? null : activeFilter;
+    const groupTag = usedTag || 'tag';
+    const byTag = {};
+    allTags.forEach(t => byTag[t] = []);
+    filtered.forEach(m => {
+      const primaryTag = usedTag ? usedTag : m.tags[0];
+      if (!byTag[primaryTag]) byTag[primaryTag] = [];
+      byTag[primaryTag].push(m);
+    });
 
-    groupOrder.forEach((g, si) => {
-      const items = byGroup[g];
-      if (!items.length) return;
-      const section = document.createElement('div');
-      section.className = 'shelf-section';
-      const labelRow = document.createElement('div');
-      labelRow.className = 'shelf-label-row';
-      labelRow.innerHTML = `<span class="shelf-num">§ ${String(si+1).padStart(2,'0')}</span><span class="shelf-name">${groupLabels[g]}</span><span class="shelf-count">${items.length} item${items.length===1?'':'s'}</span>`;
+    let si = 0;
+    allTags.forEach(tag => {
+      const items = byTag[tag];
+      if (!items || !items.length) return;
+      si++;
+      const section = document.createElement('div'); section.className = 'shelf-section';
+      const labelRow = document.createElement('div'); labelRow.className = 'shelf-label-row';
+      labelRow.innerHTML = `<span class="shelf-num">§ ${String(si).padStart(2,'0')}</span><span class="shelf-name">${tag}</span><span class="shelf-count">${items.length} item${items.length===1?'':'s'}</span>`;
       section.appendChild(labelRow);
-      const surf = document.createElement('div');
-      surf.style.padding = '0 2.5rem';
-      const grid = document.createElement('div');
-      grid.className = 'shelf-grid';
-      grid.style.margin = '0';
-      items.forEach((m, i) => grid.appendChild(makeCard(m, i, true)));
-      surf.appendChild(grid);
-      section.appendChild(surf);
-      const wood = document.createElement('div');
-      wood.className = 'shelf-wood';
-      wood.style.margin = '0 2.5rem';
+      const surf = document.createElement('div'); surf.style.padding = '0 2.5rem';
+      const grid = document.createElement('div'); grid.className = 'shelf-grid'; grid.style.margin = '0';
+      items.forEach((m,i) => grid.appendChild(makeCard(m,i)));
+      surf.appendChild(grid); section.appendChild(surf);
+      const wood = document.createElement('div'); wood.className = 'shelf-wood'; wood.style.margin = '0 2.5rem';
       section.appendChild(wood);
       body.appendChild(section);
     });
@@ -500,20 +249,20 @@ function build(filtered) {
 function applyFilters() {
   const q = searchQuery.toLowerCase();
   const filtered = maps.filter(m => {
-    const matchFilter = activeFilter === 'all' || m.group === activeFilter;
-    const matchSearch = !q || m.title.toLowerCase().includes(q) || groupLabels[m.group].toLowerCase().includes(q);
+    const matchFilter = activeFilter === 'all' || m.tags.includes(activeFilter);
+    const matchSearch = !q || m.title.toLowerCase().includes(q) || m.tags.some(t => t.toLowerCase().includes(q));
     return matchFilter && matchSearch;
   });
   build(filtered);
 }
 
-document.querySelectorAll('.ftab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = btn.dataset.filter;
-    applyFilters();
-  });
+tabsEl.addEventListener('click', e => {
+  const btn = e.target.closest('.ftab');
+  if (!btn) return;
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.filter;
+  applyFilters();
 });
 
 document.getElementById('group-toggle').addEventListener('click', () => {
