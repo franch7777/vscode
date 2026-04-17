@@ -6,6 +6,109 @@
 <title>Oakland Map Library</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+:root {
+  --green: #1D9E75;
+  --green-light: #9FE1CB;
+  --bg: #0d0d0b;
+  --bg2: #131310;
+  --bg3: #1a1a16;
+  --border: #2a2a25;
+  --border2: #3a3a34;
+  --text: #f0ede6;
+  --text2: #a8a49c;
+  --text3: #5a5a54;
+  --shelf: #1e1a12;
+  --shelf-edge: #2e2818;
+  --shelf-wood: #3d3120;
+}
+ 
+body {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+ 
+/* ── HERO ── */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+ 
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://raw.githubusercontent.com/franch7777/vscode/main/lib/back.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5) saturate(0.75);
+  transform: scale(1.04);
+  transition: transform 10s ease;
+}
+.hero:hover .hero-bg { transform: scale(1.0); }
+ 
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(13,13,11,0.05) 0%, rgba(13,13,11,0.9) 100%);
+}
+ 
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 2.5rem 2.5rem 2.75rem;
+  animation: fadeUp 0.8s ease both;
+}
+ 
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+.hero-tag {
+  display: inline-block;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--green-light);
+  border: 0.5px solid var(--green);
+  border-radius: 2px;
+  padding: 3px 10px;
+  margin-bottom: 1rem;
+}
+ 
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  margin-bottom: 0.9rem;
+}
+.hero-title em { font-style: italic; color: var(--green-light); }
+ 
+.hero-desc {
+  font-family: 'Courier Prime', monospace;
+  font-size: 13px;
+  color: rgba(240,237,230,0.6);
+  max-width: 460px;
+  line-height: 1.75;
+}
+ 
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 1.75rem;
+}
+.stat { display: flex; flex-direction: column; gap
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Courier Prime', monospace; background: #f5f2eb; color: #1a1a14; min-height: 100vh; }
 
